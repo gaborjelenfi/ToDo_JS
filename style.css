@@ -27,6 +27,13 @@ h1 {
 
 #user-input {
     font-size: inherit;
+    border: 1px solid #dd3434;
+    border-radius: 5px;
+    font-size: 2.2rem;
+}
+
+#user-input:focus {
+    outline: none;
 }
 
 .button {
@@ -40,6 +47,7 @@ h1 {
 
 .button:hover {
     opacity: 1;
+    cursor: pointer;
 }
 
 .create {
@@ -69,5 +77,15 @@ h1 {
     float: right;
 }
 
-.delete:hover + .task {text-decoration: line-through;
+.delete:hover + .task {
+    text-decoration: line-through;
+}
+
+.disabled {
+    background-color: #6e6e6e;
+}
+
+.disabled:hover {
+    opacity: 0.7;
+    cursor: context-menu;
 }
