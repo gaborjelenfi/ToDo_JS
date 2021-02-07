@@ -5,7 +5,7 @@
 }
 
 body {
-  width: 800px;
+  width: 65vw;
   margin: 10vh auto;
   text-align: center;
   font-size: 3rem;
@@ -20,9 +20,30 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.main {
+.main > form {
   font-size: 2rem;
   margin-bottom: 2rem;
+}
+
+.priority__box {
+  display: inline-block;
+  font-size: inherit;
+  margin-right: 1rem;
+}
+
+.low {
+  color: #44b372;
+  font-weight: bold;
+}
+
+.medium {
+  color: #dd8623;
+  font-weight: bold;
+}
+
+.high {
+  color: #e64d4d;
+  font-weight: bold;
 }
 
 #user-input {

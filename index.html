@@ -13,9 +13,19 @@
       <h1>ToDO List</h1>
     </header>
     <section class="main">
-      <input type="date" name="due" class="due">
-      <input type="text" name="user-input" id="user-input" />
-      <button type="submit" class="button create disabled">Create</button>
+      <form>
+        <div class="priority__box">
+          <input type="radio" id="low" name="prior" value="low" checked>
+          <label for="low" class="low">low</label>
+          <input type="radio" id="medium" name="prior" value="medium">
+          <label for="medium" class="medium">medium</label>
+          <input type="radio" id="high" name="prior" value="high">
+          <label for="high" class="high">high</label>
+        </div>
+        <input type="date" name="due" class="due">
+        <input type="text" name="user-input" id="user-input" />
+        <button type="submit" class="button create disabled">Create</button>
+      </form>
     </section>
     <section class="content__tasks">
      <!--  <div class="box__tasks" data-id="1">

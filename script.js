@@ -2,6 +2,7 @@ const userInput = document.querySelector('#user-input');
 const createBtn = document.querySelector('.create');
 const tasks = document.querySelector('.content__tasks');
 const dueDate = document.querySelector('.due');
+const radioBtns = document.getElementsByName('prior');
 
 let tasksHolder = [];
 const minChar = 6;
@@ -18,19 +19,22 @@ dueDate.setAttribute('min', getCurrentDate());
 
 function addToDo() {
   id = (Date.now() + '').slice(-10);
+  const priority = addPriority();
   const html = `
     <div class="box__tasks" data-id="${id}">
       <p class="due-string">${dueDate.value}</p>
       <button class="button delete">X</button>
-      <p class="task">${userInput.value}</p>
+      <p class="task ${priority}">${userInput.value}</p>
      </div>`;
   tasks.insertAdjacentHTML('afterbegin', html);
   userInput.value = '';
   tasksHolder.push({ id, html });
   dueDate.value = '';
   console.log(tasksHolder);
-  setLocalStorage();
   checkValidation();
+  addPriority();
+  setLocalStorage();
+  console.log(tasksHolder);
 }
 
 function checkValidation(e) {
@@ -54,6 +58,14 @@ function toggleValidation(isDisabled, color) {
   userInput.style.border = `1px solid ${color}`;
   // prettier-ignore
   isDisabled ? createBtn.classList.add('disabled') : createBtn.classList.remove('disabled');
+}
+
+function addPriority() {
+  for (let i = 0; i < radioBtns.length; i++) {
+    if (radioBtns[i].checked) {
+      return radioBtns[i].value;
+    }
+  }
 }
 
 function setLocalStorage() {
