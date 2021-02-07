@@ -29,10 +29,20 @@ h1 {
     font-size: inherit;
 }
 
-.create {
+.button {
     border: none;
     padding: 3px;
     border-radius: 5px;
+    text-align: center;
+    box-shadow: 2px 2px #25252598;
+    opacity: 0.7;
+}
+
+.button:hover {
+    opacity: 1;
+}
+
+.create {
     color: #252525;
     background-color: #1d9b51;
     font-size: inherit;
@@ -42,6 +52,22 @@ h1 {
     font-size: inherit;
 }
 
-.task {
+.box__tasks {
+    font-size: inherit;
     margin-bottom: 1rem;
+}
+
+.task {
+    display: inline-block;
+}
+
+.delete {
+    width:2.5rem;
+    height: 2.6rem;
+    background-color: #b81a1a;
+    color: #e0e0e0;
+    float: right;
+}
+
+.delete:hover + .task {text-decoration: line-through;
 }
