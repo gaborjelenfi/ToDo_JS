@@ -8,6 +8,7 @@ body {
     width: 800px;
     margin: 10vh auto;
     text-align: center;
+    font-size: 3rem;
 }
 
 header {
@@ -21,9 +22,10 @@ h1 {
 
 .main {
  font-size: 2rem;
+ margin-bottom: 2rem;
 }
 
-#task {
+#user-input {
     font-size: inherit;
 }
 
@@ -31,7 +33,15 @@ h1 {
     border: none;
     padding: 3px;
     border-radius: 5px;
-    color: #2e2e2e;
+    color: #252525;
     background-color: #1d9b51;
     font-size: inherit;
+}
+
+.content__tasks {
+    font-size: inherit;
+}
+
+.task {
+    margin-bottom: 1rem;
 }
