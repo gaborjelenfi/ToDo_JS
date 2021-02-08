@@ -77,6 +77,12 @@ h1 {
   font-size: inherit;
 }
 
+.save {
+  color: #252525;
+  background-color: #1d6d9b;
+  font-size: inherit;
+}
+
 .content__tasks {
   font-size: inherit;
 }
@@ -84,6 +90,7 @@ h1 {
 .box__tasks {
   font-size: inherit;
   margin-bottom: 1rem;
+  border-bottom: 1px solid #2c2c2c;
 }
 
 .due {
@@ -97,6 +104,13 @@ h1 {
     color: #2c2c2c;
     font-weight: bold;
     float: left;
+}
+
+.edit {
+  float: left;
+  margin-right: 2.5rem;
+  border: none;background-color: #1d6d9b;
+  color: #e0e0e0;
 }
 
 .task {
