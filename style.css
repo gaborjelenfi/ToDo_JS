@@ -20,34 +20,53 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.priorityLabel,
+#priorityFilter,
+.priority__box,
+#userInput,
+.create,
+.save,
+.content__tasks,
+.filter,
+.box__tasks,
+.due {
+  font-size: inherit;
+}
+
 .main > form {
   font-size: 2rem;
   margin-bottom: 2rem;
 }
 
-.priority__box {
-  display: inline-block;
-  font-size: inherit;
+.priorityLabel {
   margin-right: 1rem;
 }
 
-.low {
+#priorityFilter {
+  border-radius: 5px;
+}
+
+.priority__box {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.lowLabel {
   color: #44b372;
   font-weight: bold;
 }
 
-.medium {
+.mediumLabel {
   color: #dd8623;
   font-weight: bold;
 }
 
-.high {
+.highLabel {
   color: #e64d4d;
   font-weight: bold;
 }
 
-#user-input {
-  font-size: inherit;
+#userInput {
   border: 1px solid #dd3434;
   border-radius: 5px;
   font-size: 2.2rem;
@@ -61,6 +80,7 @@ h1 {
   border: none;
   padding: 3px;
   border-radius: 5px;
+
   text-align: center;
   box-shadow: 2px 2px #25252598;
   opacity: 0.7;
@@ -71,63 +91,83 @@ h1 {
   cursor: pointer;
 }
 
+.filter {
+  color: #252525;
+  margin-left: 1rem;
+}
+
 .create {
   color: #252525;
   background-color: #1d9b51;
+  margin-right: 1rem;
   font-size: inherit;
+}
+
+abbr[title] {
+  border-bottom: none;
+  cursor: help;
+  text-decoration: none;
 }
 
 .save {
   color: #252525;
   background-color: #1d6d9b;
-  font-size: inherit;
-}
-
-.content__tasks {
-  font-size: inherit;
+  margin-right: 1rem;
 }
 
 .box__tasks {
-  font-size: inherit;
   margin-bottom: 1rem;
   border-bottom: 1px solid #2c2c2c;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.done {
+  text-decoration: line-through;
 }
 
 .due {
   display: inline-block;
-  font-size: inherit;
   border-radius: 5px;
 }
 
 .due-string {
-    display: inline;
-    color: #2c2c2c;
-    font-weight: bold;
-    float: left;
+  display: inline;
+  color: #2c2c2c;
+  font-weight: bold;
+  float: left;
+  padding: 0.5rem;
 }
 
 .edit {
+  width: 3.2rem;
+  height: 3.2rem;
   float: left;
   margin-right: 2.5rem;
-  border: none;background-color: #1d6d9b;
+  border: none;
+  background-color: #1d6d9b;
   color: #e0e0e0;
 }
 
 .task {
   overflow-wrap: break-word;
   display: inline;
+  padding: 0.5rem;
 }
 
 .delete {
-  width: 2.5rem;
-  height: 2.6rem;
+  width: 3.2rem;
+  height: 3.2rem;
   background-color: #b81a1a;
   color: #e0e0e0;
   float: right;
 }
 
 .delete:hover + .task {
-  text-decoration: line-through;
+  background-color: #e64d4d8a;
 }
 
 .disabled {

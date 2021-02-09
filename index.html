@@ -13,27 +13,38 @@
       <h1>ToDO List</h1>
     </header>
     <section class="main">
+      <form>
+        <label for="priorityFilter" class="priorityLabel">Filter tasks:</label>
+        <select name="priorityFilter" id="priorityFilter">
+          <option value="all task">All task</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <button type="button" class="button filter disabled">📑</button>
+      </form>
       <form id="form">
         <div class="priority__box">
-          <input type="radio" id="low" name="prior" value="low" checked>
-          <label for="low" class="low">low</label>
-          <input type="radio" id="medium" name="prior" value="medium">
-          <label for="medium" class="medium">medium</label>
-          <input type="radio" id="high" name="prior" value="high">
-          <label for="high" class="high">high</label>
+          <input type="radio" id="low" name="prior" value="low" checked />
+          <label for="low" class="lowLabel">low</label>
+          <input type="radio" id="medium" name="prior" value="medium" />
+          <label for="medium" class="mediumLabel">medium</label>
+          <input type="radio" id="high" name="prior" value="high" />
+          <label for="high" class="highLabel">high</label>
         </div>
-        <input type="date" name="due" class="due">
-        <input type="text" name="user-input" id="user-input" />
-        <button type="submit" class="button create disabled">Create</button>
+        <input type="date" name="due" class="due" />
+        <input type="text" name="userInput" id="userInput" />
+        <button type="button" class="button create disabled">📌</button>
+        <abbr title="task description must be at least 6 characters">❔</abbr>
       </form>
     </section>
     <section class="content__tasks">
-   <!--    <div class="box__tasks" data-id="1">
+<!--       <ul class="box__tasks" data-id="1">
         <button type="button" class="button edit">edit</button>
-        <p class="due-string">04/05/2021</p>
+        <li class="due-string">04/05/2021</li>
+        <li class="task">akármi</li>
         <button class="button delete">X</button>
-        <p class="task">akármi</p>
-      </div> -->
+      </ul> -->
     </section>
   </body>
 </html>

@@ -1,17 +1,20 @@
-const userInput = document.querySelector('#user-input');
+const userInput = document.querySelector('#userInput');
 const createBtn = document.querySelector('.create');
 const tasks = document.querySelector('.content__tasks');
 const dueDate = document.querySelector('.due');
 const radioBtns = document.getElementsByName('prior');
 const form = document.getElementById('form');
+const filterBtn = document.querySelector('.filter');
+const priorityFilter = document.querySelector('#priorityFilter');
 
 let tasksHolder = [];
 const minChar = 6;
 let savedTasks;
-let id = 0;
+let id = null;
 createBtn.disabled = true;
-let editMode = false;
 let currentEl = -1;
+filterBtn.disabled = true;
+filterValue = priorityFilter.value;
 
 getLocalStorage();
 
@@ -20,30 +23,61 @@ userInput.addEventListener('keyup', isValid);
 userInput.addEventListener('keypress', e => addWithEnter(e));
 tasks.addEventListener('click', e => deleteTask(e));
 tasks.addEventListener('click', e => editTask(e));
+tasks.addEventListener('click', e => toggleMarkAsFinished(e));
 dueDate.setAttribute('min', getCurrentDate());
+filterBtn.addEventListener('click', filter);
 
 function getFormData() {
   id = (Date.now() + '').slice(-10);
   const priority = addPriority();
   const html = `
-    <div class="box__tasks" data-id="${id}">
-      <button type="button" class="button edit">edit</button>
-      <p class="due-string">${dueDate.value}</p>
-      <button class="button delete">X</button>
-      <p class="task ${priority}">${userInput.value}</p>
-    </div>`;
+    <ul class="box__tasks" data-id="${id}">
+      <button type="button" class="button edit">✎</button>
+      <li class="due-string">${dueDate.value}</li>
+      <li class="task ${priority}Label">${userInput.value}</li>
+      <button class="button delete">✖</button>
+    </ul>`;
 
   return {
     dueDate: dueDate.value,
     userInputValue: userInput.value,
     priority,
     id,
-    html,
+    html
   };
+}
+
+function filter() {
+  filterValue = priorityFilter.value;
+  filteredTasks = tasksHolder.filter(element => element.priority === filterValue);
+  removeAllTasks();
+  if(filterValue === "all task") showAllTasks();
+  filteredTasks.forEach(filteredEl => tasks.insertAdjacentHTML('afterbegin', filteredEl.html));
+  setLocalStorage();
+
+}
+
+function checkTasksHolderLength() {
+  if(tasksHolder.length < 1) {
+    filterBtn.classList.add('disabled');
+    filterBtn.disabled = true;
+  }
+
+  if(tasksHolder.length > 0) {
+    filterBtn.classList.remove('disabled');
+    filterBtn.disabled = false;
+  }
+}
+
+function removeAllTasks() {
+  const allTasks = document.querySelectorAll('.box__tasks');
+  [...allTasks].forEach(el => el.remove());
 }
 
 function addToDo(e) {
   const data = getFormData();
+  filterBtn.classList.remove('disabled');
+  filterBtn.disabled = false;
 
   if (e.target.classList.contains('create')) {
     tasks.insertAdjacentHTML('afterbegin', data.html);
@@ -51,10 +85,9 @@ function addToDo(e) {
   }
 
   if (e.target.classList.contains('save')) {
-    const allTasks = document.querySelectorAll('.box__tasks');
     if (currentEl < 0) return;
     tasksHolder[currentEl] = data;
-    [...allTasks].forEach(el => el.remove());
+    removeAllTasks();
     showAllTasks();
 
     createBtn.textContent = 'create';
@@ -97,6 +130,13 @@ function toggleValidation(isDisabled, color) {
   isDisabled ? createBtn.classList.add('disabled') : createBtn.classList.remove('disabled');
 }
 
+function toggleMarkAsFinished(e) {
+  if (!e.target.classList.contains('box__tasks')) return;
+  e.target.classList.toggle('done');
+}
+
+
+
 function addPriority() {
   for (let i = 0; i < radioBtns.length; i++) {
     if (radioBtns[i].checked) {
@@ -111,7 +151,6 @@ function editTask(e) {
   const taskEl = e.target.closest('.box__tasks');
 
   if (!taskEl) return;
-  editMode = true;
   const [edit] = tasksHolder.filter(el => el.id === taskEl.dataset.id);
   userInput.value = edit.userInputValue;
   dueDate.value = edit.dueDate;
@@ -133,12 +172,11 @@ function deleteTask(e) {
   taskEl.remove();
   tasksHolder = tasksHolder.filter(del => del.id !== taskEl.dataset.id);
   setLocalStorage();
+  checkTasksHolderLength();
 }
 
 function showAllTasks () {
-  tasksHolder.forEach(element => {
-    tasks.insertAdjacentHTML('afterbegin', element.html);
-  });
+  tasksHolder.forEach(element => tasks.insertAdjacentHTML('afterbegin', element.html));
 }
 
 function getCurrentDate() {
@@ -153,12 +191,18 @@ function getCurrentDate() {
 function setLocalStorage() {
   localStorage.clear();
   localStorage.setItem('tasks', JSON.stringify(tasksHolder));
+  localStorage.setItem('filter', JSON.stringify(filterValue));
 }
 
 function getLocalStorage() {
   const data = JSON.parse(localStorage.getItem('tasks'));
+  const filterData = JSON.parse(localStorage.getItem('filter'));
 
   if (!data) return;
   tasksHolder = data;
+  filterValue = filterData;
+  priorityFilter.value = filterData
   showAllTasks();
+  checkTasksHolderLength();
+  filter();
 }
