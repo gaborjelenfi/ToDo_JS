@@ -18,7 +18,7 @@ filterValue = priorityFilter.value;
 
 getLocalStorage();
 
-createBtn.addEventListener('click', e => addToDo(e));
+createBtn.addEventListener('click', () => addToDo());
 userInput.addEventListener('keyup', isValid);
 userInput.addEventListener('keypress', e => addWithEnter(e));
 tasks.addEventListener('click', e => deleteTask(e));
@@ -74,21 +74,21 @@ function removeAllTasks() {
   [...allTasks].forEach(el => el.remove());
 }
 
-function addToDo(e) {
+function addToDo() {
   const data = getFormData();
   filterBtn.classList.remove('disabled');
   filterBtn.disabled = false;
 
-  if (e.target.classList.contains('create')) {
+  if (createBtn.classList.contains('create')) {
     tasks.insertAdjacentHTML('afterbegin', data.html);
     tasksHolder.push(data);
   }
 
-  if (e.target.classList.contains('save')) {
+  if (createBtn.classList.contains('save')) {
     if (currentEl < 0) return;
     tasksHolder[currentEl] = data;
     removeAllTasks();
-    showAllTasks();
+    filter();
 
     createBtn.textContent = 'create';
     createBtn.classList.remove('save');
