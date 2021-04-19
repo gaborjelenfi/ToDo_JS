@@ -9,7 +9,6 @@ const priorityFilter = document.querySelector('#priorityFilter');
 
 let tasksHolder = [];
 const minChar = 6;
-let savedTasks;
 let id = null;
 createBtn.disabled = true;
 let currentEl = -1;
@@ -54,7 +53,6 @@ function filter() {
   if(filterValue === "all task") showAllTasks();
   filteredTasks.forEach(filteredEl => tasks.insertAdjacentHTML('afterbegin', filteredEl.html));
   setLocalStorage();
-
 }
 
 function checkTasksHolderLength() {
@@ -97,7 +95,6 @@ function addToDo() {
 
   form.reset();
   isValid();
-  addPriority();
   setLocalStorage();
 }
 
@@ -134,8 +131,6 @@ function toggleMarkAsFinished(e) {
   if (!e.target.classList.contains('box__tasks')) return;
   e.target.classList.toggle('done');
 }
-
-
 
 function addPriority() {
   for (let i = 0; i < radioBtns.length; i++) {
