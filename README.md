@@ -9,7 +9,7 @@
 - CSS
 
 
-## Functions
+## Features
 
 ### Creation form:
 
