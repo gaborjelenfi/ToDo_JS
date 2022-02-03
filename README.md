@@ -2,6 +2,8 @@
 
 ### Live demo: <a href="http://dzsub-todo.surge.sh/" target="_blank">toDo</a>
 
+### This app is focusing on Vanilla  JavaScript.
+
 ## Used Stack
 
 - Javascipt
@@ -50,6 +52,4 @@ Use the button with the **X** to delete a task.
  - Delete button
 
 ### For saving tasks I used **LocaleStorage**.
-
-
 
